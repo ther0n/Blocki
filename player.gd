@@ -11,11 +11,16 @@ const MOVE_MAX_VELOCITY = 600.0
 const JUMP_VELOCITY = 900.0
 var device_id = -1
 
+onready var block = preload("res://block.tscn")
+
+onready var shot_cooldown = $ShotCooldown
+
 var aim_x
 var aim_y
 var move_x
 var move_y
 var jump
+var shoot
 var aim_angle
 
 
@@ -47,6 +52,13 @@ func _integrate_forces(state):
 		
 	if jump && found_floor:
 		lv.y = -JUMP_VELOCITY
+	if shoot and shot_cooldown.is_stopped():
+		shot_cooldown.start()
+		var new_block = block.instance()
+		new_block.position = position
+		var root = get_tree().get_root()
+		var current_scene = root.get_child(root.get_child_count() -1)
+		current_scene.add_child(new_block)
 
 	state.set_linear_velocity(lv)
 
@@ -61,6 +73,7 @@ func update_inputs():
 	move_x = Input.get_joy_axis(device_id, JOY_AXIS_0)
 	move_y = Input.get_joy_axis(device_id, JOY_AXIS_1)
 	jump = Input.is_joy_button_pressed(device_id, JOY_BUTTON_0)
+	shoot = Input.is_joy_button_pressed(device_id, JOY_BUTTON_6)
 	aim_x = Input.get_joy_axis(device_id, JOY_AXIS_2)
 	aim_y = Input.get_joy_axis(device_id, JOY_AXIS_3)
 	aim_angle = Vector2(aim_x, aim_y).angle()

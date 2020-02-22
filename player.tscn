@@ -22,3 +22,6 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="ShotCooldown" type="Timer" parent="."]
+one_shot = true
