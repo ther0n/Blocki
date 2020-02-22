@@ -19,8 +19,48 @@ func _ready():
 		grid[n].resize(xsize)
 		for m in ysize:
 			var noiseVal = (noise.get_noise_2d(n, m) + 1) / 2
+			
 			if (noiseVal * (2*m / ysize) > cull_val):
-				grid[n][m]=9
+				print(noiseVal * (2*m / ysize))
+				grid[n][m] = 1
+			else:
+				grid[n][m] = -1
+	
+	for n in xsize:
+		for m in ysize:
+			var emptyL
+			var emptyR
+			var emptyU
+			var emptyD
+			
+			var inputVal = 9
+			
+			if (grid[n][m] != -1):
+				if (n==0 or grid[n-1][m]==-1):
+					emptyL =  true
+				if (n==xsize-1 or grid[n+1][m]==0):
+					emptyR = true
+				if (m==0 or grid[n][m-1]==-1):
+					emptyU = true
+				if (m==ysize-1 or grid[n][m+1]==0):
+					emptyD = true
+				if (emptyL and emptyR and emptyU and emptyD):
+					pass
+				elif(emptyL and emptyR and emptyD):
+					pass
+				elif(emptyL and emptyR and emptyU):
+					pass
+				elif(emptyL and emptyU and not emptyR and not emptyD):
+					inputVal = 2
+				elif(emptyR and emptyU and not emptyL and not emptyD):
+					inputVal = 4
+				elif(emptyU and not emptyR and not emptyD and not emptyL):
+					inputVal = 3
+					
+					if (m != 0):
+						grid[n][m-1] = 8
+				
+				grid[n][m] = inputVal
 			else:
 				grid[n][m]=-1
 	
