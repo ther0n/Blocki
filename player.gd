@@ -4,9 +4,11 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-const MOVE_ACCEL = 500.0
-const MOVE_DEACCEL = 500.0
-const MOVE_MAX_VELOCITY = 140.0
+const MOVE_ACCEL = 1000.0
+const MOVE_DEACCEL = 2000.0
+const MOVE_FALL = 1000.0
+const MOVE_MAX_VELOCITY = 3000.0
+const JUMP_VELOCITY = 380
 var device_id = -1
 
 
@@ -20,11 +22,21 @@ func _integrate_forces(state):
 	var step = state.get_step()
 
 	# Get the controls.
-	var move_x = Input.get_joy_axis(device_id, 0)
-	#var move_right = Input.is_action_pressed("player_right")
+	
+	var move_x = Input.get_joy_axis(device_id, JOY_AXIS_0)
+	var move_y = Input.get_joy_axis(device_id, JOY_AXIS_1)
+	var jump = Input.is_joy_button_pressed(device_id, JOY_BUTTON_0)
 
 	if abs(lv.x) < MOVE_MAX_VELOCITY:
+		if sign(lv.x) != sign(move_x):
+			lv.x += move_x * MOVE_DEACCEL * step
 		lv.x += move_x * MOVE_ACCEL * step
+
+	if move_y > 0: 
+		lv.y += move_y * MOVE_FALL * step
+		
+	if jump:
+		lv.y = -JUMP_VELOCITY
 
 	state.set_linear_velocity(lv)
 
