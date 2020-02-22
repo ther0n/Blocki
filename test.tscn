@@ -1,12 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/block.png" type="Texture" id=1]
 [ext_resource path="res://test.gd" type="Script" id=2]
 [ext_resource path="res://TileMap.gd" type="Script" id=3]
 [ext_resource path="res://Camera2D.gd" type="Script" id=4]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
@@ -193,56 +190,6 @@ points = PoolVector2Array( 128, 128, 0, 128, 0, 0, 128, 0 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
-
-[node name="Cube2" type="RigidBody2D" parent="."]
-position = Vector2( 832.077, 124.104 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Cube2"]
-antialiased = true
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube2"]
-shape = SubResource( 1 )
-
-[node name="Cube3" type="RigidBody2D" parent="."]
-position = Vector2( 864, 376 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Cube3"]
-antialiased = true
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube3"]
-shape = SubResource( 1 )
-
-[node name="Cube4" type="RigidBody2D" parent="."]
-position = Vector2( 888, 200 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Cube4"]
-antialiased = true
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube4"]
-shape = SubResource( 1 )
-
-[node name="Cube5" type="RigidBody2D" parent="."]
-position = Vector2( 272, 368 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Cube5"]
-antialiased = true
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube5"]
-shape = SubResource( 1 )
-
-[node name="Cube6" type="RigidBody2D" parent="."]
-position = Vector2( 816.099, 50.8343 )
-
-[node name="Polygon2D" type="Polygon2D" parent="Cube6"]
-antialiased = true
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Cube6"]
-shape = SubResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 11 )

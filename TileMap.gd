@@ -21,7 +21,7 @@ func _ready():
 			var noiseVal = (noise.get_noise_2d(n, m) + 1) / 2
 			
 			if (noiseVal * (2*m / ysize) > cull_val):
-				print(noiseVal * (2*m / ysize))
+				#print(noiseVal * (2*m / ysize))
 				grid[n][m] = 1
 			else:
 				grid[n][m] = -1
