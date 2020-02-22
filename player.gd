@@ -14,6 +14,11 @@ var device_id = -1
 func _ready():
 	pass # Replace with function body.
 	
+func _fire_cube():
+	var aim_x = Input.get_joy_axis(device_id, 2)
+	var aim_y = Input.get_joy_axis(device_id, 3)
+	var aim_rotation = Vector2(aim_x, aim_y).angle()
+	
 
 func _integrate_forces(state):
 	var lv = state.get_linear_velocity()
