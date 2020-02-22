@@ -7,8 +7,9 @@ extends RigidBody2D
 const MOVE_ACCEL = 2000.0
 const MOVE_DEACCEL = 2000.0
 const MOVE_FALL = 2000.0
-const MOVE_MAX_VELOCITY = 600.0
-const JUMP_VELOCITY = 900.0
+const MOVE_MAX_VELOCITY = 800.0
+const JUMP_VELOCITY = 1500.0
+const JUMP_TIME = 0.15
 var device_id = -1
 
 var aim_x
@@ -16,6 +17,7 @@ var aim_y
 var move_x
 var move_y
 var jump
+var can_jump = 0
 var aim_angle
 
 
@@ -31,11 +33,14 @@ func _integrate_forces(state):
 	update_inputs()
 	$Gun.rotation = aim_angle - rotation
 	
-	var found_floor = false
+	var floor_normal
+	var wall_normal
 	for x in range(state.get_contact_count()):
 		var ci = state.get_contact_local_normal(x)
 		if ci.dot(Vector2(0, -1)) > 0.6:
-			found_floor = true
+			floor_normal = ci
+		if ci.dot(Vector2(0, -1)) > -0.7:
+			wall_normal = ci
 			
 	if sign(lv.x) != sign(move_x):
 		lv.x += move_x * MOVE_DEACCEL * step
@@ -44,10 +49,20 @@ func _integrate_forces(state):
 
 	if move_y > 0: 
 		lv.y += move_y * MOVE_FALL * step
+	
+	if can_jump > 0:
+		can_jump -= step
 		
-	if jump && found_floor:
-		lv.y = -JUMP_VELOCITY
-
+	if jump && can_jump <= 0:
+		if floor_normal != null:
+			can_jump = 0.15
+			lv.y = -JUMP_VELOCITY
+		elif wall_normal != null:
+			can_jump = 0.15
+			lv.y = -JUMP_VELOCITY/1.2
+			lv.x = wall_normal.x * JUMP_VELOCITY/1.6
+		
+		
 	state.set_linear_velocity(lv)
 
 
