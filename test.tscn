@@ -18,7 +18,6 @@ script = ExtResource( 2 )
 position = Vector2( 832.077, 124.104 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Cube2"]
-antialiased = true
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cube2"]
@@ -28,7 +27,6 @@ shape = SubResource( 1 )
 position = Vector2( 864, 376 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Cube3"]
-antialiased = true
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cube3"]
@@ -38,7 +36,6 @@ shape = SubResource( 1 )
 position = Vector2( 888, 200 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Cube4"]
-antialiased = true
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cube4"]
@@ -48,7 +45,6 @@ shape = SubResource( 1 )
 position = Vector2( 272, 368 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Cube5"]
-antialiased = true
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cube5"]
@@ -58,7 +54,6 @@ shape = SubResource( 1 )
 position = Vector2( 816.099, 50.8343 )
 
 [node name="Polygon2D" type="Polygon2D" parent="Cube6"]
-antialiased = true
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cube6"]
