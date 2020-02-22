@@ -38,7 +38,8 @@ func _integrate_forces(state):
 	
 	# Get the controls.
 	update_inputs()
-	$Gun.rotation = aim_angle - rotation
+	if Vector2(aim_x,aim_y).length() > 0.1:
+		$Gun.rotation = aim_angle - rotation
 	
 	var floor_normal
 	var wall_normal
@@ -69,7 +70,7 @@ func _integrate_forces(state):
 			lv.y = -JUMP_VELOCITY/1.2
 			lv.x = wall_normal.x * JUMP_VELOCITY/1.6
 
-	if shoot and shot_cooldown.is_stopped():
+	if shoot and shot_cooldown.is_stopped() and Vector2(aim_x,aim_y).length() > 0.1:
 		shot_cooldown.start()
 		var new_block = block.instance()
 		new_block.position = (Vector2(aim_x, aim_y)*200) + position
