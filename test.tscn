@@ -248,6 +248,7 @@ shape = SubResource( 1 )
 tile_set = SubResource( 11 )
 cell_size = Vector2( 128, 128 )
 cell_custom_transform = Transform2D( 0, 0, 6400, 0, 0, 1920 )
+collision_friction = 0.2
 format = 1
 script = ExtResource( 3 )
 
