@@ -2,14 +2,9 @@ extends TileMap
 
 var grid = []
 var noise = OpenSimplexNoise.new()
-var cull_val = 0.3
+var cull_val = 0.25
 var xsize = 128
 var ysize = 48
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,8 +19,8 @@ func _ready():
 		for m in ysize:
 			var noiseVal = noise.get_noise_2d(n, m)
 			if (noiseVal > cull_val):
-				print(noiseVal)
-				grid[n][m]=0
+				#print(noiseVal)
+				grid[n][m]=9
 			else:
 				grid[n][m]=-1
 	
@@ -34,9 +29,12 @@ func _ready():
 		var xval = randi()%(xsize - 20) + 10
 		var num = randi()%7+4
 		
-		for l in range(0, num):
-			if grid[xval][yval+l]==-1:
-				grid[xval][yval+1]==1  
+		for l in range(0, num):				
+			if grid[xval][yval]==-1:
+				if l==0 or l==num-1:
+					grid[xval+l][yval]=0  
+				else:
+					grid[xval+l][yval]=1
 	
 	for n in range(0,xsize - 1):
 		for m in range(0, ysize-1):
