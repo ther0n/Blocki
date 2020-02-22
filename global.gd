@@ -12,6 +12,7 @@ func _ready():
 	for controller in Input.get_connected_joypads():
 		print(controller)
 		var new_player = player.instance()
+		new_player.position = Vector2(randi()%25 +3200, randi()%15+960)
 		new_player.set_device_id(controller)
 		players.append(new_player)
 
