@@ -1,6 +1,7 @@
 extends Camera2D
 
 var one = 300
+var minzoom = 2.0
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -31,8 +32,7 @@ func _process(delta):
 			maxy = position.y
 	
 	offset = Vector2((minx +  maxx)/2, (miny + maxy)/2)
-	var zoomVal = max(max(1.5, (maxx - minx)/one), max(1.5,(maxy - miny)/one))
+	var zoomVal = max(max(minzoom, (maxx - minx)/one), max(minzoom,(maxy - miny)/one))
 	zoom = Vector2(zoomVal, zoomVal)
-	print(zoom)
 	
 #	pass
