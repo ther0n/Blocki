@@ -112,7 +112,7 @@ func _ready():
 				print(length)
 				
 				if length > 2:
-					if randi()% 10 <= 1:
+					if randi()% 30 <= 1:
 						var realLength = max(3,length-randi()%6)
 						for l in range(0, realLength):
 							if l == 0:
