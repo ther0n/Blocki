@@ -8,6 +8,7 @@ puppet func spawn_player(spawn_pos, id):
 	
 	player.position = spawn_pos
 	player.name = String(id) # Important
+	print(id)
 	player.set_network_master(id) # Important
 	
 	$Players.add_child(player)

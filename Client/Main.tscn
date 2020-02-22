@@ -6,6 +6,9 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBox" type="VBoxContainer" parent="."]
 margin_left = 403.958
@@ -13,6 +16,9 @@ margin_top = 108.679
 margin_right = 511.958
 margin_bottom = 366.679
 custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="VBox"]
 margin_right = 108.0
