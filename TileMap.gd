@@ -22,6 +22,7 @@ func _ready():
 			
 			if (noiseVal * (2*m / ysize) > cull_val):
 				#print(noiseVal * (2*m / ysize))
+
 				grid[n][m] = 1
 			else:
 				grid[n][m] = -1
@@ -38,23 +39,36 @@ func _ready():
 			if (grid[n][m] != -1):
 				if (n==0 or grid[n-1][m]==-1):
 					emptyL =  true
-				if (n==xsize-1 or grid[n+1][m]==0):
+				if (n==xsize-1 or grid[n+1][m]==-1):
 					emptyR = true
 				if (m==0 or grid[n][m-1]==-1):
 					emptyU = true
-				if (m==ysize-1 or grid[n][m+1]==0):
+				if (m==ysize-1 or grid[n][m+1]==-1):
 					emptyD = true
+					
 				if (emptyL and emptyR and emptyU and emptyD):
-					pass
-				elif(emptyL and emptyR and emptyD):
-					pass
-				elif(emptyL and emptyR and emptyU):
-					pass
+					inputVal = 14
+				elif(emptyL and emptyR and emptyD and not emptyU):
+					inputVal = 13
+				elif(emptyL and emptyR and emptyU and not emptyD):
+					inputVal = 12
+				elif(emptyL and emptyD and not emptyR and not emptyU):
+					inputVal = 11
+				elif(emptyR and emptyD and not emptyL and not emptyU):
+					inputVal = 10
 				elif(emptyL and emptyU and not emptyR and not emptyD):
 					inputVal = 2
 				elif(emptyR and emptyU and not emptyL and not emptyD):
 					inputVal = 4
-				elif(emptyU and not emptyR and not emptyD and not emptyL):
+				elif(emptyL and emptyU and emptyD and not emptyR):
+					inputVal = 16
+					if (m != 0):
+						grid[n][m-1] = 8
+				elif(emptyR and emptyU and emptyD and not emptyL):
+					inputVal = 15
+					if (m != 0):
+						grid[n][m-1] = 8
+				elif(emptyU and not emptyR and not emptyL):
 					inputVal = 3
 					
 					if (m != 0):
