@@ -2,7 +2,7 @@ extends TileMap
 
 var grid = []
 var noise = OpenSimplexNoise.new()
-var cull_val = 0.25
+var cull_val = 0.1
 var xsize = 128
 var ysize = 48
 
@@ -30,9 +30,9 @@ func _ready():
 		var num = randi()%7+4
 		
 		for l in range(0, num):				
-			if grid[xval][yval]==-1:
+			if grid[xval+l][yval]==-1:
 				if l==0 or l==num-1:
-					grid[xval+l][yval]=0  
+					grid[xval+l][yval]=0
 				else:
 					grid[xval+l][yval]=1
 	
