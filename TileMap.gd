@@ -2,7 +2,7 @@ extends TileMap
 
 var grid = []
 var noise = OpenSimplexNoise.new()
-var cull_val = .5
+var cull_val = 0.5
 var xsize = 50
 var ysize = 32
 
@@ -21,8 +21,6 @@ func _ready():
 			var noiseVal = (noise.get_noise_2d(n, m) + 1) / 2
 			
 			if (noiseVal * (2*m / ysize) > cull_val):
-				#print(noiseVal * (2*m / ysize))
-
 				grid[n][m] = 1
 			else:
 				grid[n][m] = -1
@@ -111,8 +109,6 @@ func _ready():
 					else:
 						break
 				
-				print(length)
-				
 				if length > 2:
 					if randi()% 30 <= 1:
 						var realLength = max(3,length-randi()%6)
@@ -127,7 +123,3 @@ func _ready():
 	for n in range(0,xsize - 1):
 		for m in range(0, ysize-1):
 			set_cell(n, m, grid[n][m])
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
