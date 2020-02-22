@@ -19,15 +19,17 @@ var aim_angle
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-	
+
+func process(delta):
+	add_force(Vector2(0,0),Vector2(0,1))
 
 func _integrate_forces(state):
 	var lv = state.get_linear_velocity()
 	var step = state.get_step()
-	update_inputs()
+	
 	# Get the controls.
-
-	#var move_right = Input.is_action_pressed("player_right")
+	update_inputs()
+	$Gun.rotation = aim_angle - rotation
 
 	if abs(lv.x) < MOVE_MAX_VELOCITY:
 		lv.x += move_x * MOVE_ACCEL * step
