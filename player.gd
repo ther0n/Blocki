@@ -10,11 +10,13 @@ const MOVE_FALL = 2000.0
 const MOVE_MAX_VELOCITY = 800.0
 const JUMP_VELOCITY = 1500.0
 const JUMP_TIME = 0.15
+const SHOT_VELOCITY = 800
 var device_id = -1
 
 onready var block = preload("res://block.tscn")
 
 onready var shot_cooldown = $ShotCooldown
+
 
 var aim_x
 var aim_y
@@ -70,10 +72,13 @@ func _integrate_forces(state):
 	if shoot and shot_cooldown.is_stopped():
 		shot_cooldown.start()
 		var new_block = block.instance()
-		new_block.position = position
+		new_block.position = (Vector2(aim_x, aim_y)*200) + position
+		new_block.linear_velocity = Vector2(aim_x, aim_y)*SHOT_VELOCITY
+		#new_block.position = $Gun/Position2D.position
+		#new_block.position = position
 		var root = get_tree().get_root()
 		var current_scene = root.get_child(root.get_child_count() -1)
-		current_scene.add_child(new_block)
+		current_scene.call_deferred("add_child",new_block)
 
 	state.set_linear_velocity(lv)
 
