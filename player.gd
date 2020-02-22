@@ -24,7 +24,7 @@ func _ready():
 	pass # Replace with function body.
 
 func process(delta):
-	add_force(Vector2(0,0),Vector2(0,1))
+	add_force(Vector2(1,0),Vector2(0,1))
 
 func _integrate_forces(state):
 	var lv = state.get_linear_velocity()
