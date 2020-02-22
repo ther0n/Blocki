@@ -10,7 +10,7 @@ const MOVE_FALL = 2000.0
 const MOVE_MAX_VELOCITY = 800.0
 const JUMP_VELOCITY = 1500.0
 const JUMP_TIME = 0.15
-const SHOT_VELOCITY = 800
+const SHOT_VELOCITY = 3000
 var device_id = -1
 
 onready var block = preload("res://block.tscn")
