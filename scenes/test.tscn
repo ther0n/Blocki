@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/cube.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 656, 10 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="SpawnPoints" type="Node" parent="."]
+
+[node name="0" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 136, 416 )
+
+[node name="1" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 680, 408 )
+
+[node name="2" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 440, 192 )
+
+[node name="3" type="Position2D" parent="SpawnPoints"]
+position = Vector2( 120, 216 )
+
+[node name="Cube3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 368, 216 )
+
+[node name="Cube4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 672, 232 )
+
+[node name="Cube5" parent="." instance=ExtResource( 1 )]
+position = Vector2( 384, 272 )
+
+[node name="Cube6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 384, 288 )
+
+[node name="Cube" parent="." instance=ExtResource( 1 )]
+position = Vector2( 376, 320 )
+
+[node name="Cube2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 248, 352 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 288, 528 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 208, 56 )
+shape = SubResource( 1 )
+
+[node name="Players" type="Node" parent="."]
