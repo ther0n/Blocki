@@ -92,8 +92,8 @@ func _integrate_forces(state):
 func update_inputs():
 	move_x = Input.get_joy_axis(device_id, JOY_AXIS_0)
 	move_y = Input.get_joy_axis(device_id, JOY_AXIS_1)
-	jump = Input.is_joy_button_pressed(device_id, JOY_BUTTON_0)
-	shoot = Input.is_joy_button_pressed(device_id, JOY_BUTTON_6)
+	jump = Input.is_joy_button_pressed(device_id, JOY_BUTTON_0) || Input.is_joy_button_pressed(device_id, JOY_BUTTON_5) 
+	shoot = Input.is_joy_button_pressed(device_id, JOY_BUTTON_6)  || Input.is_joy_button_pressed(device_id, JOY_BUTTON_2)
 	aim_x = Input.get_joy_axis(device_id, JOY_AXIS_2)
 	aim_y = Input.get_joy_axis(device_id, JOY_AXIS_3)
 	aim_angle = Vector2(aim_x, aim_y).angle()
