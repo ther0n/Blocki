@@ -17,6 +17,10 @@ scale = Vector2( 1, 0.265625 )
 color = Color( 0, 0, 0, 1 )
 polygon = PoolVector2Array( -8, -33.8824, 57, -33.8824, 57, 26.3529, -8, 26.3529 )
 
+[node name="Crosshair" type="Polygon2D" parent="Gun"]
+position = Vector2( 209, -3.76471 )
+polygon = PoolVector2Array( -8, -30.1176, 8, -30.1176, 8, 30.1176, -8, 30.1176 )
+
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
