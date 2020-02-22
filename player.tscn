@@ -2,8 +2,8 @@
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 30.0
 
 [node name="Player" type="RigidBody2D"]
 position = Vector2( 47, 49 )
@@ -22,7 +22,7 @@ position = Vector2( 209, -3.76471 )
 polygon = PoolVector2Array( -8, -30.1176, 8, -30.1176, 8, 30.1176, -8, 30.1176 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
-polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
+polygon = PoolVector2Array( -22.1427, -20.9921, 0.0404663, -30.6617, 23.3612, -20.9921, 30.7556, 0.622295, 23.93, 20.5303, 0.609253, 30.7687, -22.7115, 20.5303, -30.1059, 0.0534935 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
