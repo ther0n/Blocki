@@ -65,28 +65,3 @@ physics_material_override = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource( 3 )
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2( 529.771, -21.4824 )
-physics_material_override = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-shape = SubResource( 3 )
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( -169.365, 595.05 )
-rotation = 1.5708
-physics_material_override = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -464.085, -166.972 )
-shape = SubResource( 3 )
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2( 854.568, 646.615 )
-rotation = 1.5708
-physics_material_override = SubResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( -464.085, -166.972 )
-shape = SubResource( 3 )
