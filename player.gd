@@ -7,7 +7,7 @@ extends RigidBody2D
 const MOVE_ACCEL = 2000.0
 const MOVE_DEACCEL = 2000.0
 const MOVE_FALL = 2000.0
-const MOVE_MAX_VELOCITY = 600.0
+const MOVE_MAX_VELOCITY = 800.0
 const JUMP_VELOCITY = 1500.0
 const JUMP_TIME = 0.15
 var device_id = -1

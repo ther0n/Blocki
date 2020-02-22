@@ -11,7 +11,7 @@ extents = Vector2( 32, 32 )
 position = Vector2( 47, 49 )
 mode = 2
 physics_material_override = SubResource( 2 )
-gravity_scale = 20.0
+gravity_scale = 25.0
 contacts_reported = 3
 script = ExtResource( 1 )
 
