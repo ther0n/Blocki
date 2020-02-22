@@ -10,11 +10,13 @@ const MOVE_FALL = 2000.0
 const MOVE_MAX_VELOCITY = 800.0
 const JUMP_VELOCITY = 1500.0
 const JUMP_TIME = 0.15
+const SHOT_VELOCITY = 800
 var device_id = -1
 
 onready var block = preload("res://block.tscn")
 
 onready var shot_cooldown = $ShotCooldown
+
 
 var aim_x
 var aim_y
@@ -36,7 +38,8 @@ func _integrate_forces(state):
 	
 	# Get the controls.
 	update_inputs()
-	$Gun.rotation = aim_angle - rotation
+	if Vector2(aim_x,aim_y).length() > 0.1:
+		$Gun.rotation = aim_angle - rotation
 	
 	var floor_normal
 	var wall_normal
@@ -67,10 +70,11 @@ func _integrate_forces(state):
 			lv.y = -JUMP_VELOCITY/1.2
 			lv.x = wall_normal.x * JUMP_VELOCITY/1.6
 
-	if shoot and shot_cooldown.is_stopped():
+	if shoot and shot_cooldown.is_stopped() and Vector2(aim_x,aim_y).length() > 0.1:
 		shot_cooldown.start()
 		var new_block = block.instance()
-		new_block.call_deferred("set", "position", $Gun/Crosshair.position)
+		new_block.position = (Vector2(aim_x, aim_y)*200) + position
+		new_block.linear_velocity = Vector2(aim_x, aim_y)*SHOT_VELOCITY
 		#new_block.position = $Gun/Position2D.position
 		#new_block.position = position
 		var root = get_tree().get_root()
@@ -89,8 +93,8 @@ func _integrate_forces(state):
 func update_inputs():
 	move_x = Input.get_joy_axis(device_id, JOY_AXIS_0)
 	move_y = Input.get_joy_axis(device_id, JOY_AXIS_1)
-	jump = Input.is_joy_button_pressed(device_id, JOY_BUTTON_0)
-	shoot = Input.is_joy_button_pressed(device_id, JOY_BUTTON_6)
+	jump = Input.is_joy_button_pressed(device_id, JOY_BUTTON_0) || Input.is_joy_button_pressed(device_id, JOY_BUTTON_5) 
+	shoot = Input.is_joy_button_pressed(device_id, JOY_BUTTON_6)  || Input.is_joy_button_pressed(device_id, JOY_BUTTON_2)
 	aim_x = Input.get_joy_axis(device_id, JOY_AXIS_2)
 	aim_y = Input.get_joy_axis(device_id, JOY_AXIS_3)
 	aim_angle = Vector2(aim_x, aim_y).angle()

@@ -15,7 +15,7 @@ func _process(delta):
 	var maxx = -999999
 	var maxy = -999999
 	
-	for player in Global.players:
+	for player in $"..".players:
 		var position = player.position
 		if position.x < minx:
 			minx = position.x
