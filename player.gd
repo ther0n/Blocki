@@ -44,10 +44,10 @@ func _integrate_forces(state):
 	# Get the controls.
 	if keyboard:
 		update_keyboard_inputs()
+		$Gun.rotation = aim_angle
 	else:
 		update_inputs()
-	if Vector2(aim_x,aim_y).length() > 0.1:
-		$Gun.rotation = aim_angle
+		$Gun.rotation = aim_angle - rotation
 	
 	var floor_normal
 	var wall_normal
@@ -79,13 +79,13 @@ func _integrate_forces(state):
 			lv.y = -JUMP_VELOCITY/1.2
 			lv.x = wall_normal.x * JUMP_VELOCITY/1.6
 
-	if shoot and shot_cooldown.is_stopped() and Vector2(aim_x,aim_y).length() > 0.1:
-		print(Vector2(aim_x, aim_y))
+	if shoot and shot_cooldown.is_stopped():
 		shot_cooldown.start()
 		var new_block = block.instance()
 		new_block.modulate = modulate
-		new_block.position = position + Vector2(cos($Gun.rotation), sin($Gun.rotation))
-		var dir = position.direction_to(Vector2(aim_x, aim_y))
+		var dir =  Vector2(cos($Gun.rotation + rotation), sin($Gun.rotation + rotation))
+		new_block.position = position + dir*100
+		
 		new_block.linear_velocity = dir*SHOT_VELOCITY
 		
 		lv += -dir*SHOT_VELOCITY*.25
