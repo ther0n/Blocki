@@ -7,7 +7,7 @@ extends Node
 onready var player = preload("res://player.tscn")
 var players = []
 var colors = []
-var debug = true
+var debug = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +39,9 @@ func start_game():
 		debugPlayer.set_id(players.size())
 		players.append(debugPlayer)	
 	
-
+func _input(event: InputEvent):
+	if event.is_action_pressed("fullscreen"):
+		OS.set_window_fullscreen(!OS.is_window_fullscreen())
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

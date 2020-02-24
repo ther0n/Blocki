@@ -28,19 +28,20 @@ func start_game():
 func win_and_restart(player):
 	var winner = Global.players.find(player) + 1
 	print("Player " + str(winner) + " won the game!")
-	
+	$CanvasLayer/RichTextLabel.set_text("Player " + str(winner) + " won the game!")
+	$CanvasLayer/RichTextLabel.visible = true
 	win_timer.start()
 	yield(win_timer, "timeout")
+	$CanvasLayer/RichTextLabel.visible = false
 	print("Restarting")
 	get_tree().set_pause(true)
 	for player in players:
 		players.remove(players.find(player))
 		player.queue_free()
+	$TileMap.gen_map()
 	Global.start_game()
 	start_game()
 	get_tree().set_pause(false)
-
-
 
 
 func _on_Area2D_body_entered(body):

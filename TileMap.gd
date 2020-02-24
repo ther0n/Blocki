@@ -8,6 +8,9 @@ var ysize = 32
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	gen_map()
+
+func gen_map():
 	randomize()
 	noise.seed = randi()
 	noise.octaves = 3

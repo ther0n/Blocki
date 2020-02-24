@@ -19,4 +19,5 @@ func _process(delta):
 	var lifetime_ratio = lifetime.time_left/lifetime.wait_time
 	scale = Vector2(lifetime_ratio, lifetime_ratio)
 	$CollisionShape2D.scale = Vector2(lifetime_ratio, lifetime_ratio)
+	mass = lifetime_ratio
 
