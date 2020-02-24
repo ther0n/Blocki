@@ -19,8 +19,9 @@ polygon = PoolVector2Array( -8, -33.8824, 57, -33.8824, 57, 26.3529, -8, 26.3529
 
 [node name="Crosshair" type="Polygon2D" parent="Gun"]
 position = Vector2( 209, -3.76471 )
+scale = Vector2( 1, 4 )
 antialiased = true
-polygon = PoolVector2Array( -8, -30.1176, 8, -30.1176, 8, 30.1176, -8, 30.1176 )
+polygon = PoolVector2Array( -15, 5, -15, -5, -5, -5, -5, -15, 5, -15, 5, -5, 15, -5, 15, 5, 5, 5, 5, 15, -5, 15, -5, 5 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
@@ -29,4 +30,5 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 shape = SubResource( 1 )
 
 [node name="ShotCooldown" type="Timer" parent="."]
+wait_time = 0.2
 one_shot = true
