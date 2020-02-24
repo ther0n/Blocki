@@ -16,7 +16,7 @@ var device_id = -1
 onready var block = preload("res://block.tscn")
 
 onready var shot_cooldown = $ShotCooldown
-
+var keyboard = false
 
 var aim_x
 var aim_y
@@ -37,7 +37,10 @@ func _integrate_forces(state):
 	var step = state.get_step()
 	
 	# Get the controls.
-	update_inputs()
+	if keyboard:
+		update_keyboard_inputs()
+	else:
+		update_inputs()
 	if Vector2(aim_x,aim_y).length() > 0.1:
 		$Gun.rotation = aim_angle - rotation
 	
@@ -71,10 +74,11 @@ func _integrate_forces(state):
 			lv.x = wall_normal.x * JUMP_VELOCITY/1.6
 
 	if shoot and shot_cooldown.is_stopped() and Vector2(aim_x,aim_y).length() > 0.1:
+		print(Vector2(aim_x, aim_y))
 		shot_cooldown.start()
 		var new_block = block.instance()
-		new_block.position = (Vector2(aim_x, aim_y)*200) + position
-		new_block.linear_velocity = Vector2(aim_x, aim_y)*SHOT_VELOCITY
+		new_block.position = position + Vector2(cos($Gun.rotation), sin($Gun.rotation))
+		new_block.linear_velocity = position.direction_to(Vector2(aim_x, aim_y))*SHOT_VELOCITY
 		#new_block.position = $Gun/Position2D.position
 		#new_block.position = position
 		var root = get_tree().get_root()
@@ -99,5 +103,32 @@ func update_inputs():
 	aim_y = Input.get_joy_axis(device_id, JOY_AXIS_3)
 	aim_angle = Vector2(aim_x, aim_y).angle()
 
+func update_keyboard_inputs():
+	var player_left = Input.is_key_pressed(KEY_A)
+	var player_right = Input.is_key_pressed(KEY_D)
+	var player_jump = Input.is_key_pressed(KEY_SPACE)
+	var player_shoot = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	var mouse_pos = get_global_mouse_position()
+	var mouse_aim_x = mouse_pos.x
+	var mouse_aim_y = mouse_pos.y
+	if player_left:
+		move_x = -1
+	elif player_right:
+		move_x = 1
+	else:
+		move_x = 0
+	move_y = 0
+	#move_y = Input.get_joy_axis(device_id, JOY_AXIS_1)
+	jump = player_jump
+	shoot = player_shoot
+	aim_x = mouse_aim_x
+	aim_y = mouse_aim_y
+	aim_angle = get_angle_to(Vector2(aim_x, aim_y))
+	#print(shoot)
+	#print(aim_angle)
+
 func set_device_id(new_device_id):
 	device_id = new_device_id
+
+func set_keyboard(using_keyboard):
+	keyboard = using_keyboard

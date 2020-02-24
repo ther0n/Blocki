@@ -15,6 +15,10 @@ func _ready():
 		new_player.position = Vector2(randi()%25 +3200, randi()%15+960)
 		new_player.set_device_id(controller)
 		players.append(new_player)
+	var keyboard_player = player.instance()
+	keyboard_player.position = Vector2(randi()%25 +3200, randi()%15+960)
+	keyboard_player.set_keyboard(true)
+	players.append(keyboard_player)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

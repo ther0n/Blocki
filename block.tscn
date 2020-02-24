@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://block.gd" type="Script" id=1]
+
+[sub_resource type="PhysicsMaterial" id=2]
+friction = 0.2
+bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
 [node name="Block" type="RigidBody2D"]
 position = Vector2( 832.077, 124.104 )
-mass = 15.6541
+physics_material_override = SubResource( 2 )
 gravity_scale = 19.47
+script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 antialiased = true
@@ -14,3 +21,7 @@ polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="Lifetime" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
