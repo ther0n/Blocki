@@ -9,6 +9,10 @@ var players = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	start_game()
+
+func start_game():
+	players = []
 	for controller in Input.get_connected_joypads():
 		print(controller)
 		var new_player = player.instance()
@@ -19,7 +23,6 @@ func _ready():
 	keyboard_player.position = Vector2(randi()%25 +3200, randi()%15+960)
 	keyboard_player.set_keyboard(true)
 	players.append(keyboard_player)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

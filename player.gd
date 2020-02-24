@@ -42,16 +42,17 @@ func _integrate_forces(state):
 	else:
 		update_inputs()
 	if Vector2(aim_x,aim_y).length() > 0.1:
-		$Gun.rotation = aim_angle - rotation
+		$Gun.rotation = aim_angle
 	
 	var floor_normal
 	var wall_normal
 	for x in range(state.get_contact_count()):
-		var ci = state.get_contact_local_normal(x)
-		if ci.dot(Vector2(0, -1)) > 0.6:
-			floor_normal = ci
-		if ci.dot(Vector2(0, -1)) > -0.7:
-			wall_normal = ci
+		if state.get_contact_collider_object(x).is_in_group("terrain"):
+			var ci = state.get_contact_local_normal(x)
+			if ci.dot(Vector2(0, -1)) > 0.6:
+				floor_normal = ci
+			if ci.dot(Vector2(0, -1)) > -0.7:
+				wall_normal = ci
 			
 	if sign(lv.x) != sign(move_x):
 		lv.x += move_x * MOVE_DEACCEL * step

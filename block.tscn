@@ -2,17 +2,19 @@
 
 [ext_resource path="res://block.gd" type="Script" id=1]
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=1]
 friction = 0.2
-bounce = 1.0
+bounce = 0.8
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
 [node name="Block" type="RigidBody2D"]
 position = Vector2( 832.077, 124.104 )
-physics_material_override = SubResource( 2 )
+mass = 1.5
+physics_material_override = SubResource( 1 )
 gravity_scale = 19.47
+continuous_cd = 1
 script = ExtResource( 1 )
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
@@ -20,7 +22,7 @@ antialiased = true
 polygon = PoolVector2Array( -32, -32, 32, -32, 32, 32, -32, 32 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Lifetime" type="Timer" parent="."]
 wait_time = 5.0

@@ -14,7 +14,6 @@ func _process(delta):
 	var miny = 999999
 	var maxx = -999999
 	var maxy = -999999
-	
 	for player in $"..".players:
 		var position = player.position
 		if position.x < minx:
