@@ -1,6 +1,7 @@
 extends Camera2D
 
-var one = 300
+var xzoom = 750
+var yzoom = 450
 var minzoom = 2.0
 
 # Called when the node enters the scene tree for the first time.
@@ -27,7 +28,7 @@ func _process(delta):
 			maxy = position.y
 	
 	offset = Vector2((minx +  maxx)/2, (miny + maxy)/2)
-	var zoomVal = max(max(minzoom, (maxx - minx)/one), max(minzoom,(maxy - miny)/one))
+	var zoomVal = max(max(minzoom, (maxx - minx)/xzoom), max(minzoom,(maxy - miny)/yzoom))
 	zoom = Vector2(zoomVal, zoomVal)
 	
 #	pass

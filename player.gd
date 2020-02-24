@@ -13,6 +13,8 @@ const JUMP_TIME = 0.15
 const SHOT_VELOCITY = 3000
 var device_id = -1
 
+var id
+
 onready var block = preload("res://block.tscn")
 
 onready var shot_cooldown = $ShotCooldown
@@ -27,6 +29,9 @@ var shoot
 var can_jump = 0
 var aim_angle
 
+func set_id(newId):
+	id = newId
+	modulate = Global.colors[id]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -77,8 +82,13 @@ func _integrate_forces(state):
 		print(Vector2(aim_x, aim_y))
 		shot_cooldown.start()
 		var new_block = block.instance()
+		new_block.modulate = modulate
 		new_block.position = position + Vector2(cos($Gun.rotation), sin($Gun.rotation))
-		new_block.linear_velocity = position.direction_to(Vector2(aim_x, aim_y))*SHOT_VELOCITY
+		var dir = position.direction_to(Vector2(aim_x, aim_y))
+		new_block.linear_velocity = dir*SHOT_VELOCITY
+		
+		lv += -dir*SHOT_VELOCITY*.25
+		
 		#new_block.position = $Gun/Position2D.position
 		#new_block.position = position
 		var root = get_tree().get_root()
