@@ -52,7 +52,8 @@ func _integrate_forces(state):
 	var floor_normal
 	var wall_normal
 	for x in range(state.get_contact_count()):
-		if state.get_contact_collider_object(x).is_in_group("terrain"):
+		var object = state.get_contact_collider_object(x)
+		if object != null and object.is_in_group("terrain"):
 			var ci = state.get_contact_local_normal(x)
 			if ci.dot(Vector2(0, -1)) > 0.6:
 				floor_normal = ci
@@ -84,11 +85,12 @@ func _integrate_forces(state):
 		var new_block = block.instance()
 		new_block.modulate = modulate
 		var dir =  Vector2(cos($Gun.rotation + rotation), sin($Gun.rotation + rotation))
-		new_block.position = position + dir*100
+		new_block.position = position + dir
 		
 		new_block.linear_velocity = dir*SHOT_VELOCITY
 		
-		lv += -dir*SHOT_VELOCITY*.25
+		# disabled because it allows player to fly indefinitely:
+		#lv += -dir*SHOT_VELOCITY*.25
 		
 		#new_block.position = $Gun/Position2D.position
 		#new_block.position = position
